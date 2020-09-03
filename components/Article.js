@@ -86,6 +86,33 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Making the best of repetitive tasks',
+    date: 'July 21st, 2020',
+    firstParagraph: `Switzerland is small and neutral! We are more like Germany, ambitious and misunderstood! You guys aren't Santa! You're not even robots. How dare you lie in front of Jesus? I guess if you want children beaten, you have to do it yourself.`,
+
+    secondParagraph: `A true inspiration for the children. Soon enough. What's with you kids? Every other day it's food, food, food. Alright, I'll get you some stupid food. No argument here. I meant 'physically'. Look, perhaps you could let me work for a little food? I could clean the floors or paint a fence, or service you sexually?`,
+
+    thirdParagraph: `Oh, all right, I am. But if anything happens to me, tell them I died robbing some old man. My fellow Earthicans, as I have explained in my book 'Earth in the Balance'', and the much more popular ''Harry Potter and the Balance of Earth', we need to defend our planet against pollution. Also dark wizards.`
+  },
+  {
+    title: 'My name is Jaime',
+    date: 'The long summer',
+    firstParagraph: `More pigeon pie, please. The Dothraki do things in their own time, for their own reasons. The rains of castamere. The battle of the redgrass field. Pay the iron price. Pay the iron price. Words are like wind. The War of the 5 kings. King in the North. The bear and the maiden fair. It is rare to meet a Lannister who shares my enthusiasm for dead Lannisters. The wolf and the lion. What is dead may never die. The battle of the redgrass field. The Knight of Lemonwood. I pledge my life and honor to the Night's Watch, for this night and all the nights to come. A good act does not wash out the bad, nor a bad act the good. Each should have its own reward. Forgive my manners. I don't see many ladies these days. Lucky for the ladies. `,
+
+    secondParagraph: `Skoros morghot vestri? Avy jorraelan. Tubi daor. Sikudi nopazmi! Tubi daor. Sikudi nopazmi! Skoros morghot vestri? Bantis zobrie issa se ossyngnoti ledys. Hen syndrorro, onos. Hen nuqir, perzys. Hen morghot, glaeson. Toli rhuqo lotinti, kostilus. Sikudi nopazmi! Zyhys onoso jehikagon Aeksiot epi, se gis hen syndrorro jemagon. Avy jorraelan. Sikudi nopazmi! Daoruni gimi, Ionos Sonaro. Tubi daor. Ao ynoma diniluks? Skoros morghot vestri? `,
+
+    thirdParagraph: `Shekh ma shieraki anni. Hash yer dothrae chek asshekh? Ezas eshna gech ahilee! Hash anha atihak yera save? Yer zheanae sekke. Yer zheanae sekke. Es havazhaan. Hash anha atihak yera save? Ki fin yeni? Athdavrazar! Ezas eshna gech ahilee! Khal ahhas arakh. Hash yer dothrae chek asshekh? Nevakhi vekha ha maan: Rekke, m'aresakea norethi fitte. Hash yer dothrae chek asshekh? Es havazhaan. San athchomari yeraan. Khal ahhas arakh.`
+  },
+  {
+    title: 'What, So Everyone’s Supposed To Sleep Every Single Night Now?',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Dont look at me! That guy over there roped me into this. I dunno, some people would pay top dollar for that kind of breakthrough. Aids! Like nothing shady ever happened in a fully furnished office? You ever hear about Wall Street Morty? You know what those guys do in their fancy board rooms? They take their balls and dip 'em in cocaine and wipe 'em all over each other. You know Grandpa goes around and he does his business in public because grandpa isn't shady.`,
+
+    secondParagraph: `Right, Crocubot. So, you're half cold unfeeling reptile, half also cold equally unfeeling machine? I wish that shotgun was my penis. Well, to be honest, I'm kind of grossed out with the sexual nature of how everything unfolded. I didn't know how sexual dragons were. I kind of just wanted to do some D&D stuff, y'know? Jesus Christ! Did the boomy-booms blow up all your wordy-word books?`,
+
+    thirdParagraph: `Let’s be post-apocalyptic scavengerrrrsss! Man, that guy is the Red Grin Grumbold of pretending he knows what's going on. Oh you agree huh? You like that Red Grin Grumbold reference? Well guess what, I made him up. You really are your father's children. Think for yourselves, don't be sheep. I'd like to order one large sofa chair with extra chair please. high chair, no no no recliner... and wheelchair on half. Those guys are inside you building a piece of shit Ethan! They're inside you building a monument to compromise! Fuck them, fuck those people, fuck this whole thing Ethan.`
   }
 ];
 
@@ -102,15 +129,65 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+*/
+const articleContainer = document.querySelector('.articles')
 
+function articleMaker( {title, date, firstParagraph, secondParagraph, thirdParagraph} ) {
+
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const articleDate = document.createElement('p')
+  const paragraphOne = document.createElement('p')
+  const paragraphTwo = document.createElement('p')
+  const paragraphThree = document.createElement('p')
+  const expandButton = document.createElement('span')
+
+  article.appendChild(articleTitle)
+  article.appendChild(articleDate)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(expandButton)
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  expandButton.classList.add('expandButton')
+
+  articleTitle.textContent = title
+  articleDate.textContent = date
+  paragraphOne.textContent = firstParagraph
+  paragraphTwo.textContent = secondParagraph
+  paragraphThree.textContent = thirdParagraph
+  expandButton.textContent = `+`
+
+/*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
+*/
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
 
+
+/*
   Step 3: Don't forget to return something from your function!
+*/
 
+  return article
+}
+
+/*
   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+*/
 
+data.forEach(articleObject => {
+  const article = articleMaker(articleObject)
+  articleContainer.appendChild(article)
+})
+
+
+/*
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
