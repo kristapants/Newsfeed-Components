@@ -127,7 +127,7 @@ const data = [
 
     {three separate paragraph elements}
 
-    <span class="expandButton">+</span>
+    <span class="openButton">+</span>
   </div>
 */
 const articleContainer = document.querySelector('.articles')
@@ -140,34 +140,48 @@ function articleMaker( {title, date, firstParagraph, secondParagraph, thirdParag
   const paragraphOne = document.createElement('p')
   const paragraphTwo = document.createElement('p')
   const paragraphThree = document.createElement('p')
-  const expandButton = document.createElement('span')
+  const openButton = document.createElement('span')
+  const closeButton = document.createElement('span')
+  const readButton = document.createElement('button')
 
   article.appendChild(articleTitle)
   article.appendChild(articleDate)
+  article.appendChild(readButton)
   article.appendChild(paragraphOne)
   article.appendChild(paragraphTwo)
   article.appendChild(paragraphThree)
-  article.appendChild(expandButton)
+  article.appendChild(openButton)
+  article.appendChild(closeButton)
 
   article.classList.add('article')
   articleDate.classList.add('date')
-  expandButton.classList.add('expandButton')
+  openButton.classList.add('expandButton')
+  closeButton.classList.add('expandButton', 'inactive')
 
   articleTitle.textContent = title
   articleDate.textContent = date
+  readButton.textContent = 'Mark as READ'
   paragraphOne.textContent = firstParagraph
   paragraphTwo.textContent = secondParagraph
   paragraphThree.textContent = thirdParagraph
-  expandButton.textContent = `+`
+  openButton.textContent = `Click to open`
+  closeButton.textContent = 'Click to close'
 
 /*
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+  Step 2: Still inside `articleMaker`, add an event listener to the span.openButton.
   This listener should toggle the class 'article-open' on div.article.
 */
-  expandButton.addEventListener('click', () => {
+  const clickHandler = () => {
     article.classList.toggle('article-open')
-  })
+    openButton.classList.toggle('inactive')
+    closeButton.classList.toggle('inactive')
+  }
+  openButton.addEventListener('click', clickHandler)
+  closeButton.addEventListener('click', clickHandler)
 
+  readButton.addEventListener('click', () => {
+    article.classList.add('read')
+  })
 
 /*
   Step 3: Don't forget to return something from your function!
